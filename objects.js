@@ -20,9 +20,6 @@ const playerTwo = {
 function Player(name, marker) {
   this.name = name;
   this.marker = marker;
-  this.sayName = function () {
-    console.log(this.name);
-  };
 }
 
 const player1 = new Player("steve", "X");
@@ -43,4 +40,29 @@ function Book(title, author, pages, read) {
 
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
 
-console.log(theHobbit.info());
+theHobbit.info();
+
+Object.getPrototypeOf(player1) === Player.prototype;
+Object.getPrototypeOf(player2) === Player.prototype;
+
+player1.valueOf();
+
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.sayName = function () {
+  console.log(`Hello, I'm ${this.name}!`);
+};
+
+Player.prototype.getMarker = function () {
+  console.log(`My marker is '${this.marker}'`);
+};
+
+Object.setPrototypeOf(Player.prototype, Person.prototype);
+Object.getPrototypeOf(Player.prototype);
+
+player1.sayName();
+player2.sayName();
+player1.getMarker();
+player2.getMarker();
